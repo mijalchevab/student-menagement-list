@@ -1,0 +1,13 @@
+<div class="container"><h3>{{title}}</h3>
+  <ul class="list-group" >
+    <li *ngFor="let student of students" class="list-group-item list-group-item-action list-group-item-primary">
+      <a (click)="studentDetails(student)" routerLinkActive="active" [routerLink]="['/details',student.index]">
+        {{student.name}}
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="col-md-9">
+  <app-student-details *ngIf="currentStudent!==undefined" [student]="currentStudent"></app-student-details>
+</div>
+
