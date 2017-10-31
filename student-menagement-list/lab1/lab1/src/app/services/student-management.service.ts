@@ -7,6 +7,7 @@ import {Student} from '../model/Student';
 export class StudentManagementService {
 
   constructor() { }
+  private idSequence = 0;
   private students = [{
     name: 'Bojana Mijalcheva',
     index: 151030,
@@ -35,6 +36,20 @@ export class StudentManagementService {
     return this.listStudents()
       .then(students => students.find(student => student.index === index));
   }
+  save(student: Student): Promise<Student>{
+    const studentFromServer =[];
+    Object.assign(studentFromServer,this.students);
+    this.students=studentFromServer;
+    this.students.push(student);
+    return Promise.resolve(student);
+  }
+   edit(originalStudent: Student, updatedStudent: Student): Promise<Student> {
+    const studentFromServer=[];
+    Object.assign(studentFromServer,this.students);
+    this.students=studentFromServer;
+
+    return Promise.resolve(updatedStudent);
+   }
 }
 
 
